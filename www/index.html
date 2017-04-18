@@ -18,10 +18,75 @@
 
     <!-- <link href="lib/ionic/css/ionic.css" rel="stylesheet"> -->
 
-    <link href="css/style.css" rel="stylesheet">
+
 
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above -->
     <link href="css/ionic.app.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+  </head>
+  <body ng-app="starter">
+
+    <ion-pane ng-controller='mainCtrl'>
+
+      <ion-header>
+        <ion-toolbar class="bar bar-header bar-positive">
+          <!-- <button  class="button button-icon icon ion-navicon" ></button> -->
+          <i menu-toggle="left" ng-click="toggleLeftSideMenu()" class="button icon ion-social-tux"></i>
+          <ion-title>Maps</ion-title>
+            <i ng-click='modes()' class="button icon ion-contrast"></i>
+        </ion-toolbar>
+      </ion-header>
+              <ion-side-menus>
+                   <ion-side-menu class='menu' side="left">
+                      <dir-logo></dir-logo>
+                      <div class="list">
+                         <label class="item item-input item-stacked-label">
+                         <span class="input-label">Zip Code:</span>
+                         <form  ng-submit='newloc(zip1)'>
+                         <input ng-model='zip1' type="text" placeholder="12345">
+                         </form>
+                         </label>
+
+                         <label class="item item-input item-stacked-label">
+                         <span class="input-label">Find</span>
+                         <form ng-submit='taco(food)'>
+                         <input ng-model='food' type="text" placeholder="Food">
+                         </form>
+                         <h4 ng-show='!zip1 && food' class='assertive'>Please Enter Zip First</h4>
+                         </label>
+                      </div>
+
+                          <h3>Quick Search</h3>
+                          <button ng-click='taco("Resturants")' class="button button-full button-stable">
+                             Resturants
+                          </button>
+                          <button  ng-click='taco("Shops")' class="button button-full button-stable">
+                             Shops
+                          </button>
+                          <button  ng-click='taco("Hotels")' class="button button-full button-stable">
+                            Hotels
+                          </button>
+                          <button  ng-click='taco("Gyms")' class="button button-full button-stable">
+                             Gyms
+                          </button>
+                          <button  ng-click='taco("Pizza")' class="button button-full button-stable">
+                             Pizza
+                          </button>
+                   </ion-side-menu>
+
+                   <ion-side-menu-content>
+                     <div class='maprap'>
+                       <div id="googleMap" class='map'></div>
+                     </div>
+                   </ion-side-menu-content>
+
+            </ion-side-menus>
+
+
+
+    </ion-pane>
+
 
 
     <!-- ionic/angularjs js -->
@@ -29,23 +94,11 @@
 
     <!-- cordova script (this will be a 404 during development) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ng-cordova/0.1.27-alpha/ng-cordova.min.js"></script>
-
+    <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyB2f09BzLRIDauS6VVvHpyMuzn1ZfVRocc&libraries=places'></script>
     <!-- your app's js -->
     <script src="js/app.js"></script>
-  </head>
-  <body ng-app="starter">
-
-    <ion-pane>
-      <ion-header-bar class="bar bar-header bar-royal">
-        <i class="button icon ion-social-tux"></i>
-        <h1 class='title text-center'>Maps</h1>
-        <i class="button icon ion-image"></i>
-      </ion-header-bar>
-
-      <ion-content class='stable'>
-        <div class='text-center padding dark TEXT'>Hello World</div>
-
-      </ion-content>
-    </ion-pane>
+    <script src="js/mainCtrl.js" charset="utf-8"></script>
+    <script src="js/mainService.js" charset="utf-8"></script>
+    <script src="js/directive.js" charset="utf-8"></script>
   </body>
 </html>
